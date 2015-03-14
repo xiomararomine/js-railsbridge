@@ -57,5 +57,22 @@ updateRequest.done(function(itemData) {
 })
 })
 
+//LET USER REMOVE ITEM BY HITTING "X" OPTION
+$('#list').on('click', '.delete-button', function(event) {
+  var item = $(event.target).parent()
+var isItemCompleted = item.hasClass('completed')
+var itemId = item.attr('data-id');
+console.log(item);
+//delete from server
+var updateRequest = $.ajax({
+  type: 'DELETE',
+  url: "https://listalous.herokuapp.com/lists/Xiomararomine/items/" + itemId,
+  data: { completed: !isItemCompleted }
+})
+//removes from DOM
+item.hide();
+})
+
+
  
 
